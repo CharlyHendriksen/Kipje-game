@@ -2,32 +2,22 @@
 using UnityEngine.AI;
 using System.Collections;
 
-/* Makes enemies follow and attack the player */
 
 public class EnemyController : MonoBehaviour {
 
-	public float lookRadius = 10f;
 
-	Transform target;
-	NavMeshAgent agent;
+	public float speed;
+ 	private Transform target;
 
 	void Start()
 	{
-		target = PlayerManager.instance.player.transform;
-		agent = GetComponent<NavMeshAgent>();
+		target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
 	}
 
 	void Update ()
 	{
 		// Get the distance to the player
-		float distance = Vector3.Distance(target.position, transform.position);
-
-		// If inside the radius
-		if (distance <= lookRadius)
-		{
-			// Move towards the player
-			agent.SetDestination(target.position);
-		}
+		transform.position = Vector2.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
 	}
 
 	// Point towards the player
@@ -38,10 +28,5 @@ public class EnemyController : MonoBehaviour {
 		transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5f);
 	}
 
-	void OnDrawGizmosSelected ()
-	{
-		Gizmos.color = Color.red;
-		Gizmos.DrawWireSphere(transform.position, lookRadius);
-	}
 
 }

@@ -48,10 +48,10 @@ public class HealthBarScript : MonoBehaviour
 
         if (currentHealth < 0)
         {
-            LoseMenuUI.SetActive(true);
-            Time.timeScale = 0f;
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true; 
+            Time.timeScale = 0f;
+            LoseMenuUI.SetActive(true);
         }
     }
 }

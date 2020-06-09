@@ -2,23 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerManager : MonoBehaviour
-{
+/* Keeps track of the player */
 
-    #region Singleton
+public class PlayerManager : MonoBehaviour {
 
-    public static PlayerManager instance;
+	#region Singleton
 
-    void Awake ()
-        {
-            instance = this;
-        }
+	public static PlayerManager instance;
 
-    #endregion
-     
-     public GameObject player;
-    
+	void Awake ()
+	{
+		instance = this;
+	}
 
+	#endregion
 
-
+	public GameObject player;
 }
