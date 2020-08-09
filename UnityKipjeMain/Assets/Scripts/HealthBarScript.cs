@@ -10,24 +10,26 @@ public class HealthBarScript : MonoBehaviour
     public int currentHealth;
     public PlayerHealth healthBar;
     public GameObject LoseMenuUI;
+    public Camera_Shake camera_Shake;
+
+    public GameObject Particle;
+
+    public GameObject explosionEffect;
+
 
     // Start is called before the first frame update
     void Start()
     {
         currentHealth = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
+        Particle.SetActive(false);
+        explosionEffect.SetActive(false);
         
     }
 
     // Update is called once per frame
     void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            TakeDamage(20);
-        }
-        
-        
+    {       
     }
 
       private void OnTriggerEnter(Collider other) //Picks up items labled with tag 'Pick Up'
@@ -38,7 +40,11 @@ public class HealthBarScript : MonoBehaviour
 
                 FindObjectOfType<AudioManager>().Play("EnemyHit");
                 TakeDamage(20);
+                StartCoroutine(camera_Shake.Shake(.15f, .4f));
+                Particle.SetActive(true);
+                explosionEffect.SetActive(true);
             }
+
         }
 
     void TakeDamage(int damage)

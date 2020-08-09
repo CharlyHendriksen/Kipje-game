@@ -17,7 +17,7 @@ public class EnemyController : MonoBehaviour {
 	void Update ()
 	{
 		// Get the distance to the player
-		transform.position = Vector2.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
+		transform.position = Vector3.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
 	}
 
 	// Point towards the player

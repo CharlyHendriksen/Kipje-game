@@ -9,6 +9,8 @@ public class PlayerPickup : MonoBehaviour
     public Text CountText;
     public GameObject WinMenuUI;
 
+     public GameObject EggExplosion;
+
     private int count;
 
     // Start is called before the first frame update
@@ -16,6 +18,7 @@ public class PlayerPickup : MonoBehaviour
     {
         count = 0;
         SetCountText ();
+        EggExplosion.SetActive(false);
     }
 
     // Update is called once per frame
@@ -29,6 +32,7 @@ public class PlayerPickup : MonoBehaviour
             if (other.gameObject.CompareTag("Pick Up"))
             {
                 other.gameObject.SetActive (false);
+                EggExplosion.SetActive(true);
 
                 FindObjectOfType<AudioManager>().Play("EggPickup");
 
